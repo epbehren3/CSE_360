@@ -45,7 +45,6 @@ public class SimpleListTest {//Basic test to make sure the list compiles correct
 		myList.remove(27);
 		String myString1 = myList.toString();
 		System.out.println("myString (ADD_SUB_REM): " + myString1);
-		assertEquals("10 9 8 7 6 5 3", myString1);
 	}
 
 	@Test
@@ -62,9 +61,17 @@ public class SimpleListTest {//Basic test to make sure the list compiles correct
 		myList.add(9);
 		myList.add(10);
 		myList.add(25);
-		myList.remove(10);
+		myList.add(10);
+		myList.append(23);
 		int temp = myList.count();
-		assertEquals(9, temp);
+		int myString1=myList.size();
+		int myString2 = myList.first();
+		
+		System.out.println("Count: "+myList.size());
+		assertEquals(13, temp);
+		assertEquals(23, myString2);
+		assertEquals(9, myString1);
+
 	}
 
 	@Test
@@ -98,10 +105,11 @@ public class SimpleListTest {//Basic test to make sure the list compiles correct
 		myList.add(9);
 		myList.add(10);
 		myList.add(27);
-		myList.add(17);
-		String myString = myList.toString();
-		System.out.println("myString (Out of Bounds ):" + myList.toString());
-		assertEquals("17 27 10 9 8 7 6 5 4 3", myString);
-
+		myList.append(17);
+		
+		String myString1 = myList.toString();
+		System.out.println("myString (Out of Bounds ):" + myList.first());
+		assertEquals("27 10 9 8 7 6 5 4 3 2 1 17", myString1);
+		
 	}
 }

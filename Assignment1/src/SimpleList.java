@@ -1,4 +1,12 @@
-
+/*Simple List:
+ * Author: Evan Behrendt
+ * Class ID:149
+ * Assignment 1
+ * 
+ *This Class is made to make an array, and add, remove, and find information about it such as the toString, 
+ *length, Array count, and Specific elements in the array. 
+ *
+ */
 
 public class SimpleList {
 	// Initialize Public Variables
@@ -13,16 +21,18 @@ public class SimpleList {
 
 //Adds and index to the beginning of the array and then updates the array and adjusts the count
 	public void add(int myInt) {// Element is the information within the array that we are searching for.
-		int[] newArray = new int[10];
-		if (count == 10) {// If statement checks for array size
-			newArray[0] = myInt;
-			for (int iterate = 1; iterate < 10; iterate++) {// This is not a magic number.
-				// It is stated in the assignment that the array size cannot exceed 10
-				newArray[iterate] = myArray[iterate - 1];
-			} // For Loop finds the new array and adds the newly created array to it
-			for (int iterate = 0; iterate < 10; iterate++) {
-				myArray[iterate] = newArray[iterate];
+		if (count == myArray.length) {// If statement checks for array size
+			int newSize = (int) (myArray.length*1.5);// Multiplies the length of the array by 1.5 and then stores it
+			int[] newArray = new int[newSize];// Puts the new variable to create a new array.
+			for(int iterator = 0;iterator<count;iterator++) {
+				newArray[iterator]=myArray[iterator];
 			}
+			myArray=newArray;
+			for (int index = count - 1; index >= 0; index--) {
+				myArray[index + 1] = myArray[index];
+			}
+			myArray[0] = myInt;
+			count++;
 		} else {// Adds like a normal array.
 			for (int index = count - 1; index >= 0; index--) {
 				myArray[index + 1] = myArray[index];
@@ -35,20 +45,27 @@ public class SimpleList {
 
 //Removes the array, shifts arrays down and adjusts the count
 	public void remove(int myInt) {// Element is the information within the array that we are searching for.
-		int[] newArray = new int[10];
-		newArray[0] = myInt;
+		int[] newArray = new int[myArray.length];
+		//	newArray[0] = myInt;
 		// int count =0;
 		int myIndex = search(myInt);
-		for (int iterate = 0; iterate < myIndex; iterate++) {//Finds the first part of the array
+		for (int iterate = 0; iterate < myIndex; iterate++) {// Finds the first part of the array
 			newArray[iterate] = myArray[iterate];
 		}
-		for (int iterate = myIndex + 1; iterate < count; iterate++) {//Loads the second part of the array
+		for (int iterate = myIndex + 1; iterate < count; iterate++) {// Loads the second part of the array
 			newArray[iterate - 1] = myArray[iterate];
 		}
-		for (int iterate = 0; iterate < count; iterate++) {//Connects the two arrays
+		for (int iterate = 0; iterate < count; iterate++) {// Connects the two arrays
 			myArray[iterate] = newArray[iterate];
 		}
 		count--;
+		if(myArray.length-count > (int) (myArray.length/4)) {
+			int[] smallArray = new int[(int)(myArray.length*.75)];
+			for(int index=0; index<count;index++) {
+				smallArray[index]=myArray[index];
+			}
+			myArray=smallArray;
+		}
 
 	}
 
@@ -80,5 +97,31 @@ public class SimpleList {
 		}
 		return parameter;// Returns the index of the array that was found when searched.
 	}
+
+public void append(int myInt) {//appends element to the end of the array.
+		int newSize = (int) (myArray.length*1.5);// Multiplies the length of the array by 1.5 and then stores it
+		int[] newArray = new int[newSize];// Puts the new variable to create a new array.
+		for(int iterator = 0;iterator<count;iterator++) {//Iterates through the code
+			newArray[iterator]=myArray[iterator];
+		}
+		newArray[count] = myInt;//New int 
+		count++;
+		myArray=newArray;
+	
+
+}
+
+
+
+public int first() {//Returns the first element in the array 
+	return myArray[count-1];//Returns the last element in the array
+}
+public int size() {
+	int counter = 0;//Sets the counter
+	for(int index = count; index<myArray.length;index++) {//Sets the count to 0 and returns the size of the array 
+		counter++;
+	}
+	return counter;//Retursn the counter
+}
 
 }
