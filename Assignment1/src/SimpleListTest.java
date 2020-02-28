@@ -48,7 +48,7 @@ public class SimpleListTest {//Basic test to make sure the list compiles correct
 	}
 
 	@Test
-	void testCount() {//Tests the count function with a 9 total units. 
+	void testCount_APPEND_FIRST_SIZE() {//Tests the count function with a 9 total units. 
 		SimpleList myList = new SimpleList();
 		myList.add(1);
 		myList.add(2);
@@ -66,11 +66,9 @@ public class SimpleListTest {//Basic test to make sure the list compiles correct
 		int temp = myList.count();
 		int myString1=myList.size();
 		int myString2 = myList.first();
-		
-		System.out.println("Count: "+myList.size());
 		assertEquals(13, temp);
 		assertEquals(23, myString2);
-		assertEquals(9, myString1);
+		assertEquals(2, myString1);
 
 	}
 
@@ -108,7 +106,6 @@ public class SimpleListTest {//Basic test to make sure the list compiles correct
 		myList.append(17);
 		
 		String myString1 = myList.toString();
-		System.out.println("myString (Out of Bounds ):" + myList.first());
 		assertEquals("27 10 9 8 7 6 5 4 3 2 1 17", myString1);
 		
 	}

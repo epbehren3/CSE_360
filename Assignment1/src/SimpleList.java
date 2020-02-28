@@ -22,12 +22,12 @@ public class SimpleList {
 //Adds and index to the beginning of the array and then updates the array and adjusts the count
 	public void add(int myInt) {// Element is the information within the array that we are searching for.
 		if (count == myArray.length) {// If statement checks for array size
-			int newSize = (int) (myArray.length*1.5);// Multiplies the length of the array by 1.5 and then stores it
+			int newSize = (int) (myArray.length * 1.5);// Multiplies the length of the array by 1.5 and then stores it
 			int[] newArray = new int[newSize];// Puts the new variable to create a new array.
-			for(int iterator = 0;iterator<count;iterator++) {
-				newArray[iterator]=myArray[iterator];
+			for (int iterator = 0; iterator < count; iterator++) {
+				newArray[iterator] = myArray[iterator];
 			}
-			myArray=newArray;
+			myArray = newArray;
 			for (int index = count - 1; index >= 0; index--) {
 				myArray[index + 1] = myArray[index];
 			}
@@ -46,7 +46,7 @@ public class SimpleList {
 //Removes the array, shifts arrays down and adjusts the count
 	public void remove(int myInt) {// Element is the information within the array that we are searching for.
 		int[] newArray = new int[myArray.length];
-		//	newArray[0] = myInt;
+		// newArray[0] = myInt;
 		// int count =0;
 		int myIndex = search(myInt);
 		for (int iterate = 0; iterate < myIndex; iterate++) {// Finds the first part of the array
@@ -59,12 +59,12 @@ public class SimpleList {
 			myArray[iterate] = newArray[iterate];
 		}
 		count--;
-		if(myArray.length-count > (int) (myArray.length/4)) {
-			int[] smallArray = new int[(int)(myArray.length*.75)];
-			for(int index=0; index<count;index++) {
-				smallArray[index]=myArray[index];
+		if (myArray.length - count > (int) (myArray.length / 4)) {
+			int[] smallArray = new int[(int) (myArray.length * .75)];
+			for (int index = 0; index < count; index++) {
+				smallArray[index] = myArray[index];
 			}
-			myArray=smallArray;
+			myArray = smallArray;
 		}
 
 	}
@@ -98,30 +98,35 @@ public class SimpleList {
 		return parameter;// Returns the index of the array that was found when searched.
 	}
 
-public void append(int myInt) {//appends element to the end of the array.
-		int newSize = (int) (myArray.length*1.5);// Multiplies the length of the array by 1.5 and then stores it
-		int[] newArray = new int[newSize];// Puts the new variable to create a new array.
-		for(int iterator = 0;iterator<count;iterator++) {//Iterates through the code
-			newArray[iterator]=myArray[iterator];
+	public void append(int myInt) {// appends element to the end of the array.
+		int[] newArray;
+		if (count == myArray.length) {
+			int newSize = (int) (myArray.length * 1.5);// Multiplies the length of the array by 1.5 and then stores it
+			newArray = new int[newSize];// Puts the new variable to create a new array.
+			for (int iterator = 0; iterator < count; iterator++) {// Iterates through the code
+				newArray[iterator] = myArray[iterator];
+				newArray[count] = myInt;// New int
+				myArray = newArray;
+
+			}
+		} else {
+			myArray[count] = myInt;
 		}
-		newArray[count] = myInt;//New int 
 		count++;
-		myArray=newArray;
-	
 
-}
-
-
-
-public int first() {//Returns the first element in the array 
-	return myArray[count-1];//Returns the last element in the array
-}
-public int size() {
-	int counter = 0;//Sets the counter
-	for(int index = count; index<myArray.length;index++) {//Sets the count to 0 and returns the size of the array 
-		counter++;
 	}
-	return counter;//Retursn the counter
-}
+
+	public int first() {// Returns the first element in the array
+		return myArray[count - 1];// Returns the last element in the array
+	}
+
+	public int size() {
+		int counter = 0;// Sets the counter
+		for (int index = count; index < myArray.length; index++) {// Sets the count to 0 and returns the size of the
+																	// array
+			counter++;
+		}
+		return counter;// Retursn the counter
+	}
 
 }
